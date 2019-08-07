@@ -12,8 +12,9 @@
 			padding: 0;
 			position: absolute;
 			width: 100%;
-		}
-		
+            background: linear-gradient(to top left, rgba(0,0,0,0) 0%, rgba(0,0,0,0) calc(50% - 5px), #ff4081 50%, rgba(0,0,0,0) calc(50% + 0.8px), rgba(0,0,0,0) 100%);
+        }
+
 		#width, #height {
 			color: #ff4081;
 			display: inline-block;
@@ -21,40 +22,42 @@
 			font-weight: bold;
 			vertical-align: middle;
 		}
-		
+
 		#width:after, #height:after{
 			color: black;
 			content: "px";
 			font-size: 18px;
 			margin-left: 2px;
 		}
-		
+
 		.input-wrapper {
 			display: inline-block;
 			margin: 10px;
 			white-space: nowrap;
 		}
-		
+
 		.input-wrapper * {
 			display: inline-block;
 		}
-		
+
 		.inputs {
 			bottom: 0;
 			position: absolute;
 			right: 0;
 		}
-		
+
 		.x {
 			display: inline-block;
 			font-size: 34px;
 			margin: 0 30px;
 			vertical-align: middle;
 		}
-		
+
 		.viewport-size {
+            background-color: #fff;
 			font-family: monospace;
 			left: 50%;
+            padding: 50px;
 			position: absolute;
 			top: 50%;
 			transform: translate(-50%, -50%);
@@ -64,7 +67,7 @@
 </head>
 <body>
 	<div class="viewport-size">
-		<div id="width"></div> 
+		<div id="width"></div>
 		<div class="x">x</div>
 		<div id="height"></div>
 	</div>
@@ -80,42 +83,42 @@
 	</div>
 	<script>
 		function onResize(e) {
-			var widthEl = document.querySelector('#width'); 
+			var widthEl = document.querySelector('#width');
 			var heightEl = document.querySelector('#height');
 			var bodyEl = document.querySelector('body');
-			var size = bodyEl.getBoundingClientRect();			
+			var size = bodyEl.getBoundingClientRect();
 			widthEl.innerHTML = size.width;
 			heightEl.innerHTML = size.height;
 		}
-		
-		function onOverflowYChange(e) {			
-			var bodyEl = document.querySelector('body');			
+
+		function onOverflowYChange(e) {
+			var bodyEl = document.querySelector('body');
 			if (e.target.checked) {
 				bodyEl.style.overflowY = "scroll";
 			} else {
-				bodyEl.style.overflowY = "auto";				
-			}			
+				bodyEl.style.overflowY = "auto";
+			}
 			onResize();
 		}
-		
-		function onOverflowXChange(e) {			
-			var bodyEl = document.querySelector('body');			
+
+		function onOverflowXChange(e) {
+			var bodyEl = document.querySelector('body');
 			if (e.target.checked) {
 				bodyEl.style.overflowX = "scroll";
 			} else {
-				bodyEl.style.overflowX = "auto";				
-			}			
+				bodyEl.style.overflowX = "auto";
+			}
 			onResize();
 		}
-		
+
 		var input1 = document.querySelector(".overflow-y");
 		var input2 = document.querySelector(".overflow-x");
-		
+
 		input1.addEventListener("change", onOverflowYChange);
 		input2.addEventListener("change", onOverflowXChange);
 		window.addEventListener("resize", onResize);
 		window.addEventListener("orientationchange", onResize);
-		
+
 		onResize();
 	</script>
 </body>
